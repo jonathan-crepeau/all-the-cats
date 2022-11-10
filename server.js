@@ -41,5 +41,13 @@ app.get('/api/cats', (req, res) => {
     });
 });
 
+app.post('/api/cats/new', (req, res) => {
+    const catData = req.body;
+    db.Cat.create(catData, (err, newCat) => {
+        if (err) return res.status(400).json(err);
+        res.json(newCat);
+    });
+});
+
 
 app.listen(3377, () => console.log('App on port 3377'));
