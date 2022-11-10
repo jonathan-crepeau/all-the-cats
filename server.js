@@ -3,16 +3,22 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
 
+
+// SECTION - INITIALIZE DATABASES
 // const { Cat } = require('./models');
 const db = require('./models');
 
+
+// SECTION - MIDDLEWARE
 app.use(express.static(`${__dirname}/public`));
 
 // app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json());
 
+
+// SECTION - VIEW ROUTES
 app.get('/', (req, res) => {
-    res.json({gilmore: 'rory'});
+    res.sendFile(path.join(__dirname, '/views/homepage.html'))
 });
 
 app.get('/cats/all', (req, res) => {
@@ -24,7 +30,9 @@ app.get('/cats/new', (req, res) => {
 })
 
 
-// API
+// SECTION - API ROUTES
+
+// INDEX (GET ALL) CATS
 app.get('/api/cats', (req, res) => {
     db.Cat.find({}, (err, foundCats) => {
         if (err) return res.status(400).json(err);

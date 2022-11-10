@@ -1,0 +1,1 @@
+console.log('newCat.js ready for duty...');

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="/scripts/newCat.js"></script>
+    <title>All The Cats!</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Homepage</a></li>
+                <li><a href="/cats/all">All Cats</a></li>
+                <li><a href="/cats/new">New Cat</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>ADD CAT</h1>
+        <p>Add a cat.</p>
+        <form id="cat-form">
+            <div>
+                <label for="cat-name">Cat Name</label>
+                <input type="text" id="cat-name" name="cat-name">
+            </div>
+            <div>
+                <label for="cat-color">Cat Color</label>
+                <input type="text" id="cat-color" name="cat-color">
+            </div>
+            <button type="submit">Add Cat</button>
+        </form>
+    </main>
+</body>
+</html>
