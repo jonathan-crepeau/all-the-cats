@@ -49,5 +49,12 @@ app.post('/api/cats/new', (req, res) => {
     });
 });
 
+app.delete('/api/cats/delete/:id', (req, res) => {
+    // console.log(req.params.id);
+    db.Cat.findByIdAndDelete(req.params.id, (err, deletedCity) => {
+        if (err) return res.status(400).json(err);
+        res.json({mission: "success"});
+    });
+});
 
 app.listen(3377, () => console.log('App on port 3377'));
