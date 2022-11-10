@@ -3,30 +3,33 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
 
-const { Cat } = require('./models');
-const { response } = require('express');
+// const { Cat } = require('./models');
+const db = require('./models');
 
 app.use(express.static(`${__dirname}/public`));
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('the homepage.')
+    res.json({gilmore: 'rory'});
 });
 
-app.get('/allcats', (req, res) => {
-    res.sendFile(path.join(__dirname, '/allCats.html'));
+app.get('/cats/all', (req, res) => {
+    res.sendFile(path.join(__dirname, '/views/allCats.html'));
 });
+
+app.get('/cats/new', (req, res) => {
+    res.sendFile(path.join(__dirname, '/views/newCat.html'))
+})
 
 
 // API
 app.get('/api/cats', (req, res) => {
-    Cat.find({}, (err, foundCats) => {
+    db.Cat.find({}, (err, foundCats) => {
         if (err) return res.status(400).json(err);
-
         // Respond with the requested data
-        res.json(foundCats);
+        res.json(foundCats)
     });
 });
 
